@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/fcba06baee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{ messages[0] }}");
+        </script>
+    {% endif %}
+    {% endwith %}
+    <div id="main">
+        <div id="logo-container">
+            <div id ="logo">    
+                <a id="sulitLogo" href="{{ url_for('index') }}" style="text-decoration:none">Su<span>Lit!</span></a>  
+            </div>
+            <p id="subtxt">SA SOBRANG SULIT <span id="subtxtspan">IT'S SO LIT</span></p> 
+        </div>
+         
+        <div id="loginUI">
+            <form method="post">
+                <p id="logintxt">LOGIN</p>
+                <div id=space></div>
+                <label>Username: </label>
+                <input id="text" type="text" name="username"><br/><br/>
+                <label>Password: </label>
+                <input id="passtxt" type="password" name="password"><br/><br/>
+                <p id="errormessage">{{ error_message }}</p>
+                <input id="btn" type="submit" value="Log In"><br/><br/>
+
+                <input type="button" id="signBtn" value="Sign Up" onClick="document.location.href='register'">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

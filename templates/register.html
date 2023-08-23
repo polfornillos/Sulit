@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/fcba06baee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registerStyle.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{ messages[0] }}");
+        </script>
+    {% endif %}
+    {% endwith %}
+    <div id="main">
+        <div id="logo-container">
+            <div id ="logo">    
+                <a id="sulitLogo" href="{{ url_for('index') }}" style="text-decoration:none">Su<span>Lit!</span></a>  
+            </div>
+            <p id="subtxt">SA SOBRANG SULIT <span id="subtxtspan">IT'S SO LIT</span></p> 
+        </div>
+        <div id="registerUI">
+            <form method="post">
+                <p id="registertxt">Register</p>
+                <label>Username: </label>
+                <input id="usernametext" type="text" name="username" required><br/><br/>
+                <label>Password: </label>
+                <input id="passtext" type="password" name="password" required><br/><br/>
+                <label>First Name: </label>
+                <input id="fntext" type="text" name="firstname" required><br/><br/>
+                <label>Middle Name: </label>
+                <input id="text" type="text" name="middlename"><br/><br/>
+                <label>Last Name: </label>
+                <input id="lntext" type="text" name="lastname" required><br/><br/>
+                <label>Suffix: </label>
+                <input id="suffixtext" type="text" name="suffix"><br/><br/>
+                <p id="errormessage">{{ msg }}</p>
+                <input id="signBtn" type="submit" value="Sign Up"><br/><br/>
+                <input type="button" id="btn" value="Login" onClick="document.location.href='login'">
+            </form>
+        </div>
+        
+    </div>
+</body>
+</html>

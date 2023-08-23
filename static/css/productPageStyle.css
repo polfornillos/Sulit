@@ -1,0 +1,183 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    color:rgb(255, 255, 255);
+    background-color: #3AAFA9;
+    height: 100%;
+    margin-left: 5em;
+    margin-right: 5em;
+}
+#sulitLogo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    color: #17252A;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+#sulitLogo span {
+    color: #fff;
+}
+
+.nav-area {
+    position: absolute;
+    top: 20%;
+    left: 32%;
+}
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+    
+}
+
+#search-bar {
+    color: #17252A;
+    top: 50%; 
+    right: 90%;
+    border-radius: 30px;
+    border: none;
+    padding: 31px;
+    width: 606px;
+    height: 20px;
+}
+input[id^="search-bar"]::placeholder {
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.7;
+}
+.nav-area #searchBtn {
+    position: absolute;
+    top: 50%;
+    right: -7%;
+    transform: translate(-50%,-50%); 
+    padding: 19px 30px;
+    color: #fff;
+    background: #17252A;
+    font-size: 17px;
+    border: none;
+    border-radius: 0px 50px 50px 0px;
+    cursor: pointer;
+}
+
+.nav-area button:hover {
+    opacity: 0.9;
+}
+#icon-container{
+    position: absolute;
+    display: inline-block;
+    right: -40%;
+    top: 21%;
+}
+#onlinestatus {
+    position: absolute;
+    right: 5%; 
+    top:80%; 
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 100%;
+}
+
+#homeIcon {
+    color: #fff;
+    background: none;
+    border: none;
+}
+
+#cartIcon {
+    color: #fff;
+    background: none;
+    border: none;
+}
+
+#logoutIcon {
+    color: #fff;
+    background: none;
+    border: none;
+}
+
+#space {
+    margin-bottom: 10em;
+}
+
+#productPageBody{
+    position: relative;
+    background-color: #f0f0f0;
+    width:35.2em;
+    min-height:45em;
+    margin-top:6%;
+    border-radius: 50px;
+    margin-left: 36%;
+}
+#productImage{
+    float: left;
+    width: 50%;
+}
+.productImg{
+    position: relative;
+    width:420px;
+    height:400px;
+    margin-top:2em;
+    margin-left: 15%;
+    border:1px solid grey;
+    border-radius: 50px;
+}
+#productDesc{
+    float:left;
+    color:#17252A;
+    width: 50%;
+}
+.productName{
+    font-size: 30px;
+    font-weight: 800;
+    position: absolute;
+    margin-left: 1em;
+}
+.productPrice{
+    font-size: 18px;
+    margin-top:3.5em;
+    margin-left: 1.7em;
+}
+.productQty{
+    margin-top: -.5em;
+    margin-left: 2.1em;
+}
+.outofstock{
+    margin-top: -10px;
+    margin-left: 30px;
+    font-size:20px;
+    color: red;
+}
+#quantity{
+    position: absolute;
+    display: inline-block;
+    margin-top:1em;
+    margin-left: 11em;
+    padding: 5px;
+    border-radius: 10px;
+    width: 70px;
+}
+#addtocart{
+    position: absolute;
+    display: inline-block;
+    background-color: #17252A;
+    color: white;
+    margin-top:1em;
+    margin-left:16.5em;
+    padding: 5px;
+    border-radius: 10px;
+}
+#cart{
+    background-color: #17252A;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    position: fixed;
+    z-index: 99;
+    bottom: 30px;
+    right: 50px;
+}

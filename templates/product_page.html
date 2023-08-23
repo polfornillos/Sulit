@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if msg %}{{ product_name }}{% endif %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/fcba06baee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/productPageStyle.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+    </style>
+</head>
+
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{ messages[0] }}");
+        </script>
+    {% endif %}
+    {% endwith %}   
+    <div id ="logo">    
+        <a id="sulitLogo" href="{{ url_for('index') }}" style="text-decoration:none">Su<span>Lit!</span></a>  
+    </div>
+    <nav>
+        <div class="nav-area">
+            <form action="{{ url_for('search') }}" method="GET">
+                <div class="nav-bar">
+                    <input id="search-bar" type="text" name="search" placeholder="Search for anything">
+                    <button type="submit" id="searchBtn"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+            <div id="icon-container">
+                <button type="submit" id="homeIcon" onclick="redirectToIndex()"><div id="onlinestatus"></div><i class="fa-solid fa-house fa-3x"></i></button>
+                <button type="submit" id="cartIcon" onclick="redirectToCheckout()"><i class="fa-solid fa-basket-shopping fa-3x"></i></button>
+                <button type="submit" id="logoutIcon" onclick="redirectToLogout()"><i class="fa-solid fa-arrow-right-from-bracket fa-3x"></i></button>            
+            </div>          
+        </div>
+    </nav>
+
+    <div id=space></div>
+
+    <div id="productPageBody">
+        <div id="productDesc">
+            {% if product %}
+                <img class="productImg" src="{{ url_for('static', filename='images/products/' ~ product['img_dir']) }}">
+                <h2 class="productName">{{ product['product_name'] }}</h2>
+                <h2 class="productPrice">PHP {{ product['price'] }}</h2>
+                <p class="productQty">Stocks Left: {{ product['quantity'] }}</p>
+                <p class="outofstock">{% if msg %}{{ msg }}{% endif %}</p>
+                <div>
+                    <form action="{{ url_for('product_page', product_id=product_id) }}" method="post">
+                        <input type="number" id="quantity" name="qty" min="1" max="{{ product['quantity'] }}" required>
+                        <input type="hidden" name="product_id" value="{{ product_id }}">
+                        <button id="addtocart" name="add-to-cart" type="submit">Add to cart</button>
+                    </form>
+                </div>
+            {% else %}
+                <p>Product not found.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <form action="{{ url_for('checkout') }}">
+        <button id="cart" type="submit"><i class="fa-solid fa-bag-shopping fa-2x"></i></button>
+    </form>
+    <div id=space></div>
+                
+    <script src="{{ url_for('static', filename='js/indexJS.js') }}"></script>
+    {% if session['id'] %}
+        <script type='text/javascript'>changeStatus();</script>
+    {% else %}
+        <script type='text/javascript'>disableCart();</script>
+    {% endif %}
+
+    <script>
+        function redirectToIndex() {
+            window.location.href = "{{ url_for('index') }}";
+        }
+        function redirectToCheckout() {
+            window.location.href = "{{ url_for('checkout') }}";
+        }
+        function redirectToLogout() {
+            window.location.href = "{{ url_for('logout') }}";
+        }
+    </script>
+</body>
+</html>

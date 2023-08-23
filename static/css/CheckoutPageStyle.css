@@ -1,0 +1,508 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    color:rgb(255, 255, 255);
+    background-color: #3AAFA9;
+    height: 100%;
+    margin-left: 5em;
+    margin-right: 5em;
+}
+#sulitLogo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    color: #17252A;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    margin-top:2%;
+}
+
+#sulitLogo span {
+    color: #fff;
+}
+
+.nav-area {
+    position: absolute;
+    top: 20%;
+    left: 32%;
+}
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+    
+}
+
+#search-bar {
+    color: #17252A;
+    top: 50%; 
+    right: 90%;
+    border-radius: 30px;
+    border: none;
+    padding: 31px;
+    width: 606px;
+    height: 20px;
+}
+input[id^="search-bar"]::placeholder {
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.7;
+}
+.nav-area #searchBtn {
+    position: absolute;
+    top: 50%;
+    right: -7%;
+    transform: translate(-50%,-50%); 
+    padding: 19px 30px;
+    color: #fff;
+    background: #17252A;
+    font-size: 17px;
+    border: none;
+    border-radius: 0px 50px 50px 0px;
+    cursor: pointer;
+}
+
+.nav-area button:hover {
+    opacity: 0.9;
+}
+#icon-container{
+    position: absolute;
+    display: inline-block;
+    right: -40%;
+    top: 21%;
+}
+#onlinestatus {
+    position: absolute;
+    right: 5%; 
+    top:80%; 
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 100%;
+}
+
+#homeIcon {
+    color: #fff;
+    background: none;
+    border: none;
+}
+
+#cartIcon {
+    color: #fff;
+    background: none;
+    border: none;
+}
+
+#logoutIcon {
+    color: #fff;
+    background: none;
+    border: none;
+}
+
+#space {
+    margin-bottom: 10%;
+}
+
+#noItems{
+    position: absolute;
+    font-size: 40px;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center; 
+}
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: separate;
+    border-radius: 25px;
+    border-style: hidden;
+}
+table, th, td {
+    text-align: center;
+    font-size: 20px;
+    background: #ffffff;
+    color: #17252A;
+    padding: 10px;
+
+}
+img{
+    height: 120px;
+    width: 120px;
+}
+#empty{
+    position: fixed;
+    border-radius:100px;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    bottom: 30px;
+    right: 50px;
+    display: inline-block;
+    cursor: pointer;
+}
+.emptyTxt{
+    font-family: 'Montserrat', sans-serif;
+    visibility: hidden;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    width: 200px;
+    background-color: black;
+    color: #fff;
+    margin-top: -1em;
+    margin-left: -11.5em;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+#empty:hover .emptyTxt{
+    visibility: visible;
+}
+#checkoutLogo{
+    border: none;
+    background:none;
+}
+#purchase{
+    position: fixed;
+    border-radius:100px;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    bottom: 120px;
+    right: 50px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.purchaseTxt{
+    font-family: 'Montserrat', sans-serif;
+    visibility: hidden;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    width: 200px;
+    background-color: black;
+    color: #fff;
+    margin-top: -1em;
+    margin-left: -11.5em;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+}
+#purchase:hover .purchaseTxt{
+    visibility: visible;
+}
+a, a:link,a:visited,a:hover,a:hover {
+    color: #17252A;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.payment-form{
+    display: none;
+    z-index: 1;
+    background: rgba(0,0,0,0.5);
+    width:100%;
+    height:120%;
+    position: absolute;
+    top:0;
+    left:0;
+    justify-content: center;
+    align-items: center;
+}
+#payment-form-content{
+    position: fixed;
+    height:300px;
+    width: 400px;
+    background: white;
+    border-radius:25px;
+    margin-bottom: 10em;
+}
+#payment-header-title{
+    position:absolute;
+    z-index: 1;
+    background:#17252A;
+    border-radius: 25px 25px 0px 0px;
+    height: 50px;
+    width: 400px;
+}
+#payment-form-details p{
+    color: black;
+    margin-left:30px;
+    margin-top:60px;
+}
+#payment-header-title p{
+    position: relative;
+    margin-left: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+.closeBtn{
+    position: absolute;
+    z-index: 1;
+    height: 25px;
+    width: 25px;
+    border: none;
+    background: url("/static/images/Exit.png");
+    background-repeat: no-repeat;
+    background-size:25px 25px;
+    border-radius: 0;
+    right: 20px;
+    top: 12px;
+    cursor: pointer;
+}
+.cashondeliverybtn{
+    position: absolute;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 9em;
+    margin-right: -.5em;
+    border-radius: 25px;
+    right: 3em;
+    border: none;
+    background: #17252A;
+    color: white;
+    height:80px;
+    width: 300px;
+    cursor: pointer;
+}
+.creditcardbtn{
+    position: absolute;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 4em;
+    margin-right: -.5em;
+    border-radius: 25px;
+    right: 3em;
+    border: none;
+    background: #17252A;
+    color: white;
+    height:80px;
+    width: 300px;
+    cursor: pointer;
+}
+
+.cashondelivery-form{
+    display: none;
+    z-index: 1;
+    background: rgba(0,0,0,0.5);
+    width:100%;
+    height:120%;
+    position: absolute;
+    top:0;
+    left:0;
+    justify-content: center;
+    align-items: center;
+}
+#cashondelivery-form-content{
+    position: fixed;
+    height:500px;
+    width: 400px;
+    background: white;
+    border-radius:25px;
+    margin-bottom: 10em;
+}
+#cashondelivery-header-title{
+    position:absolute;
+    z-index: 1;
+    background:#17252A;
+    border-radius: 25px 25px 0px 0px;
+    height: 50px;
+    width: 400px;
+}
+#cashondelivery-form-details h1{
+    font-weight: 800;
+    font-size: 20px;
+    color: black;
+    margin-left:50px;
+    margin-top:90px;
+}
+#cashondelivery-form-details h3{
+    font-weight: 800;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+    margin-top:0px;
+}
+#cashondelivery-header-title p{
+    position: relative;
+    margin-left: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+.cashondeliverytxt{
+    border-radius: 25px;
+    font-size: 20px;
+    padding: 20px;
+    margin-top: 1em;
+    width: 340px;
+    height:200px;
+    background-color: #3AAFA9;
+    margin-left: 1.2em;
+}
+.cashondeliverysubmit{
+    border-radius: 100px;
+    font-weight: 800;
+    font-size: 15px;
+    padding: 20px;
+    margin-top: 2em;
+    width: 350px;
+    height: 60px;
+    background-color: #17252A;
+    margin-left: 1.3em;
+}
+.closeBtn1{
+    position: absolute;
+    z-index: 1;
+    height: 25px;
+    width: 25px;
+    border: none;
+    background: url("/static/images/Exit.png");
+    background-repeat: no-repeat;
+    background-size:25px 25px;
+    border-radius: 0;
+    right: 20px;
+    top: 12px;
+    cursor: pointer;
+}
+
+.creditcard-form{ 
+    display: none;
+    z-index: 1;
+    background: rgba(0,0,0,0.5);
+    width:100%;
+    height:120%;
+    position: absolute;
+    top:0;
+    left:0;
+    justify-content: center;
+    align-items: center;
+}
+#creditcard-form-content{
+    position: fixed;
+    height:700px;
+    width: 400px;
+    background: white;
+    border-radius:25px;
+    margin-bottom: 10em;
+}
+#creditcard-total{
+    text-align: center;
+    font-weight: 800;
+    font-size: 20px;
+    color: black;
+    
+    margin-top:40px;
+}
+#creditcard-header-title{
+    position:absolute;
+    z-index: 1;
+    background:#17252A;
+    border-radius: 23px 23px 0px 0px;
+    height: 50px;
+    width: 400px;
+}
+#creditcard-form-details #card-details{
+    text-align: center;
+    font-weight: 800;
+    font-size: 20px;
+    color: black;
+    
+    margin-top:40px;
+}
+#creditcard-form-details #address{
+    text-align: center;
+    font-weight: 800;
+    font-size: 20px;
+    color: black;
+    
+    margin-top:40px;
+}
+#creditcard-form-details h3{
+    font-weight: 800;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+    margin-top:80px;
+    margin-bottom:25px;
+}
+#creditcard-header-title p{
+    position: relative;
+    margin-left: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+.creditcardtxt{
+    border-radius: 25px;
+    font-size: 20px;
+    padding: 20px;
+    margin-top: 1em;
+    width: 340px;
+    height:200px;
+    background-color: #3AAFA9;
+    margin-left: 1.2em;
+}
+.creditcardsubmit{
+    border-radius: 100px;
+    font-weight: 800;
+    font-size: 15px;
+    padding: 20px;
+    margin-top: 2em;
+    width: 350px;
+    height: 60px;
+    background-color: #17252A;
+    margin-left: 1.3em;
+}
+.closeBtn2{
+    position: absolute;
+    z-index: 1;
+    height: 25px;
+    width: 25px;
+    border: none;
+    background: url("/static/images/Exit.png");
+    background-repeat: no-repeat;
+    background-size:25px 25px;
+    border-radius: 0;
+    right: 20px;
+    top: 12px;
+    cursor: pointer;
+}
+
+
+.cc-container{
+    text-align: center;
+    font-size: 16px;
+    color: #17252A;
+}
+
+.cvv-container{
+    margin-left: 7.85em;
+    font-size: 16px;
+    color: #17252A;
+}
+
+.exp-container{
+    margin-left: 2.2em;
+    font-size: 16px;
+    color: #17252A;
+}
+
+.CCnumber{
+    text-align: center;
+    width:180px;
+}
+.CVVnumber{
+    text-align: center;
+    width:50px;
+}
+.ExpirationDate{
+    text-align: center;
+    width:90px;
+}

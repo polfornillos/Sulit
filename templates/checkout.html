@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/fcba06baee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/CheckoutPageStyle.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+    </style>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>        
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{ messages[0] }}");
+        </script>
+    {% endif %}
+    {% endwith %}
+    <div id ="logo">    
+        <a id="sulitLogo" href="{{ url_for('index') }}" style="text-decoration:none">Su<span>Lit!</span></a>  
+    </div>
+    <nav>
+        <div class="nav-area">
+            <form action="{{ url_for('search') }}" method="GET">
+                <div class="nav-bar">
+                    <input id="search-bar" type="text" name="search" placeholder="Search for anything">
+                    <button type="submit" id="searchBtn"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+            <div id="icon-container">
+                <button type="submit" id="homeIcon" onclick="redirectToIndex()"><div id="onlinestatus"></div><i class="fa-solid fa-house fa-3x"></i></button>
+                <button type="submit" id="cartIcon" onclick="redirectToCheckout()"><i class="fa-solid fa-basket-shopping fa-3x"></i></button>
+                <button type="submit" id="logoutIcon" onclick="redirectToLogout()"><i class="fa-solid fa-arrow-right-from-bracket fa-3x"></i></button>            
+            </div>          
+        </div>
+    </nav>
+    <div id="empty">
+        <a class="empty" id="emptyCart" href="{{ url_for('empty_cart') }}">
+            <i class="fa-solid fa-trash-can fa-2x"></i><span class="emptyTxt">Remove all items</span>
+        </a>
+    </div>
+
+    <div id="purchase">
+        <a class="purchase" id="purchaseCart"><i class="fa-solid fa-cash-register fa-2x"></i><span class="purchaseTxt">Checkout</span></a>
+    </div>
+
+    <div id=space></div>
+
+    {% if session['cart'] %}
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th></th>
+            </tr>
+            {% for item in session['cart'] %}
+            <tr class="cart-item">
+                <td id="image"><img src="{{ url_for('static', filename='images/products/' ~ item['img']) }}"></td>
+                <td width="200px" class="cart-item-price">PHP {{ item['price'] }}</td>
+                <td width="300px">{{ item['name'] }}</td>
+                <td class="cart-item-quantity">{{ item['qty'] }}</td>
+                <td width="200px">PHP {{ item['price'] * item['qty'] }}</td>
+                <td width="130px" style="text-align:center;color:none">
+                    <form method="post" action="{{ url_for('remove_from_cart', product_id=item['prodid']) }}">
+                        <button type="submit" id="remove" style="background: none; border: none; cursor: pointer;">
+                            <i class="fa-solid fa-circle-minus fa-2x" style="color: none;"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% set total = total + item['price'] * item['qty'] %}
+            {% endfor %}
+            <tr>
+                <td colspan="4"></td>
+                <td><b><p>Your total is: <span id="totalAmount01" data-total="{{ total }}">PHP {{ total }}</span></h3></p></b></td>
+                <td></td>
+            </tr>
+        </table>
+        <br>
+        <div class="payment-form">
+            <div id="payment-form-content">
+                <div id="payment-header">
+                    <div id="payment-header-title">
+                        <p>Choose Payment Method</p>
+                        <button class="closeBtn" type="button"></button>
+                    </div>  
+                </div>
+                <div id="payment-form-details">
+                    <button class="cashondeliverybtn">Cash On Delivery</button>
+                    <button class="creditcardbtn">Credit/Debit Card</button>
+                </div>
+            </div> 
+        </div>
+    {% else %}
+        <div id="noItems">
+            <p >No items in the cart.</p>
+        </div>
+    {% endif %}
+    
+    <div class="cashondelivery-form">
+        <div id="cashondelivery-form-content">
+            <div id="cashondelivery-header">
+                <div id="cashondelivery-header-title">
+                    <p>Cash on Delivery</p>
+                    <button class="closeBtn1" type="button"></button>
+                </div>  
+            </div>
+            <div id="cashondelivery-form-details">
+                <form action="{{ url_for('checkout', success=1) }}" method="post">
+                    <h1>Enter Your Shipping address:</h1>
+                    <input type="hidden" name="total" value="{{ total }}">
+                    <h3>Your total is: <span id="totalAmount" data-total="{{ total }}">PHP {{ total }}</span></h3>
+                    <textarea id="cashondelivery" class="cashondeliverytxt" name="address" required></textarea>
+                    <input class="cashondeliverysubmit" type="submit" value="Purchase">
+                </form>
+            </div>
+        </div> 
+    </div>
+
+    <div class="creditcard-form">
+        <div id="creditcard-form-content">
+            <div id="creditcard-header">
+                <div id="creditcard-header-title">
+                    <p>Credit/Debit Card</p>
+                    <button class="closeBtn2" type="button"></button>
+                </div>  
+            </div>
+            <div id="creditcard-form-details">
+                <form action="{{ url_for('checkout', success=1) }}" method="post">
+                    <br>
+                    <input name="total" value="{{ total }}">
+                    <p id="creditcard-total">Your total is: <span id="totalAmount" data-total="{{ total }}">PHP {{ total }}</span></p>
+                    <h1 id=card-details>Enter Your Card Details:</h1>
+                    <div class="cc-container">
+                        <label>Card Number:</label>
+                        <input type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" class="CCnumber" maxlength="19" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="cvv-container">
+                        <label>CVV:</label>
+                        <input type="tel" class="CVVnumber" maxlength="3" placeholder="123" required>
+                    </div>
+                    <div class="exp-container">
+                        <label>Expiration Date:</label>
+                        <input type="text" class="ExpirationDate" maxlength="5" placeholder="MM/YYYY" required>
+                    </div>
+                    
+                    <h1 id=address>Enter Your Shipping address:</h1>
+                    <textarea id="creditcard" name="address" class="creditcardtxt" required></textarea>
+                    <input class="creditcardsubmit" type="submit" value="Purchase">
+                </form>
+            </div>
+        </div> 
+    </div>
+
+    <script src="{{ url_for('static', filename='js/checkoutJS.js') }}"></script>
+    {% if session['id'] %}
+    <script type='text/javascript'>changeStatus();</script>
+    {% endif %}
+    <script>
+        function redirectToIndex() {
+            window.location.href = "{{ url_for('index') }}";
+        }
+        function redirectToCheckout() {
+            window.location.href = "{{ url_for('checkout') }}";
+        }
+        function redirectToLogout() {
+            window.location.href = "{{ url_for('logout') }}";
+        }
+    </script>
+</body>
+</html>
